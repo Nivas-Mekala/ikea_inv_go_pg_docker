@@ -24,6 +24,9 @@ func setUpRoutes(app *fiber.App) {
 	app.Get("/ikea/getInventory/:id", routes.GetInventory)
 	app.Put("/ikea/updateInventory/:id", routes.UpdateInventory)
 	app.Delete("/ikea/removeInventory/:id", routes.DeleteInventory)
+
+	app.Post("/ikea/saveProducts", routes.SaveProducts)
+	app.Get("/ikea/getProducts", routes.GetAllProducts)
 }
 
 func welcome(c *fiber.Ctx) error {
