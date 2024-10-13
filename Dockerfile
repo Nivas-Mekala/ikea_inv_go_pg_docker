@@ -13,6 +13,6 @@ RUN apk add --no-cache ca-certificates
 
 ARG SERVICE
 COPY --from=builder /app/cmd/app/main /main
-#COPY --from=builder /app/.env .
+COPY --from=builder /app/.env .
 
 CMD [ "/main" ]

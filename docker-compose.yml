@@ -11,8 +11,8 @@ services:
       - .:/app
     depends_on:
       - go_db
-    networks:
-      - mynet
+#    networks:
+#      - mynet
   
   go_db:
     image: postgres:17
@@ -26,13 +26,13 @@ services:
       - POSTGRES_DB=${DB_NAME}
     volumes:
       - db:/var/lib/postgresql/data
-    networks:
-      - mynet
+#    networks:
+#      - mynet
   
 
 volumes:
   db:  
 
-networks:
-  mynet:
-    driver: bridge
+#networks:
+# mynet:
+#    driver: bridge
