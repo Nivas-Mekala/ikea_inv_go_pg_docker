@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - go_db
+    networks:
+      - mynet
+  
+  go_db:
+    image: postgres:17
+    container_name: full_db_postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - mynet
+  
+
+volumes:
+  db:  
+
+networks:
+  mynet:
+    driver: bridge
